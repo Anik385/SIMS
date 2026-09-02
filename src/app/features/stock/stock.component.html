@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+<div class="container mt-4">
+  <h2>📊 Adjust Stock</h2>
+
+  <div class="row mt-3">
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h5>Barcode Scanner</h5>
+        <div class="mb-2">
+          <button class="btn btn-primary" (click)="toggleScanner()">
+            {{ scannerEnabled ? 'Stop' : 'Start' }} Camera
+          </button>
+        </div>
+        <div *ngIf="scannerEnabled" style="max-width: 400px;">
+          <zxing-scanner
+            (scanSuccess)="onScanSuccess($event)"
+            [formats]="[11, 7, 4, 6]">
+          </zxing-scanner>
+        </div>
+        <div class="mt-2">
+          <label>Or enter SKU manually:</label>
+          <div class="input-group">
+            <input class="form-control" [(ngModel)]="skuInput" placeholder="Enter SKU" />
+            <button class="btn btn-outline-secondary" (click)="searchBySku()">Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6" *ngIf="product">
+      <div class="card p-3">
+        <h5>{{ product.name }} ({{ product.sku }})</h5>
+        <p>Current Stock: <strong>{{ product.quantity }}</strong></p>
+        <p>Price: \${{ product.price }}</p>
+        <hr />
+        <div class="mb-2">
+          <label>Delta (positive = receive, negative = sell/lost)</label>
+          <input class="form-control" type="number" [(ngModel)]="delta" placeholder="e.g., 10 or -5" />
+        </div>
+        <div class="mb-2">
+          <label>Reason</label>
+          <select class="form-select" [(ngModel)]="reason">
+            <option value="RECEIVED">Received</option>
+            <option value="SOLD">Sold</option>
+            <option value="ADJUSTED">Adjusted</option>
+            <option value="RETURNED">Returned</option>
+            <option value="LOST">Lost</option>
+          </select>
+        </div>
+        <button class="btn btn-success" (click)="adjustStock()" [disabled]="!delta">
+          Apply Adjustment
+        </button>
+        <div *ngIf="message" class="alert alert-info mt-2">{{ message }}</div>
+        <div *ngIf="error" class="alert alert-danger mt-2">{{ error }}</div>
+      </div>
+    </div>
+  </div>
+</div>
