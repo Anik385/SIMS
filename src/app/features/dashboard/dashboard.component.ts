@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../core/services/product.service';
-import { ProductResponse } from 'src/app/shared/models/product.model';
+import { ProductResponse } from '../../shared/models/product.model';
 
 @Component({
   selector: 'app-dashboard',

@@ -1,1 +1,48 @@
-<p>products works!</p>
+<app-navbar></app-navbar>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>📦 Products</h2>
+    <button class="btn btn-primary" (click)="openModal()">+ Add Product</button>
+  </div>
+
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>SKU</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th>Threshold</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of products">
+        <td>{{ p.sku }}</td>
+        <td>{{ p.name }}</td>
+        <td>{{ p.category }}</td>
+        <td>${{ p.price }}</td>
+        <td [class.text-danger]="p.quantity <= p.reorderThreshold">{{ p.quantity }}</td>
+        <td>{{ p.reorderThreshold }}</td>
+        <td>
+          <button class="btn btn-sm btn-warning me-1" (click)="openModal(p)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteProduct(p.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-between">
+    <button class="btn btn-secondary" [disabled]="page === 0" (click)="changePage(page - 1)">Previous</button>
+    <span>Page {{ page + 1 }} of {{ totalPages }}</span>
+    <button class="btn btn-secondary" [disabled]="page >= totalPages - 1" (click)="changePage(page + 1)">Next</button>
+  </div>
+</div>
+
+<app-product-modal
+  *ngIf="selectedProduct !== null"
+  [product]="selectedProduct"
+  (save)="saveProduct($event)"
+  (close)="closeModal()">
+</app-product-modal>

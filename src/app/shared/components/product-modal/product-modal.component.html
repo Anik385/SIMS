@@ -1,1 +1,40 @@
-<p>product-modal works!</p>
+<div class="modal show d-block" *ngIf="visible" style="background: rgba(0,0,0,0.5);">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ product?.id ? 'Edit' : 'Add' }} Product</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-2">
+          <label>SKU</label>
+          <input class="form-control" [(ngModel)]="form.sku" placeholder="P-001" />
+        </div>
+        <div class="mb-2">
+          <label>Name</label>
+          <input class="form-control" [(ngModel)]="form.name" placeholder="Product Name" />
+        </div>
+        <div class="mb-2">
+          <label>Category</label>
+          <input class="form-control" [(ngModel)]="form.category" placeholder="Electronics" />
+        </div>
+        <div class="mb-2">
+          <label>Price</label>
+          <input class="form-control" type="number" [(ngModel)]="form.price" />
+        </div>
+        <div class="mb-2">
+          <label>Quantity</label>
+          <input class="form-control" type="number" [(ngModel)]="form.quantity" />
+        </div>
+        <div class="mb-2">
+          <label>Reorder Threshold</label>
+          <input class="form-control" type="number" [(ngModel)]="form.reorderThreshold" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+        <button class="btn btn-primary" (click)="saveProduct()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

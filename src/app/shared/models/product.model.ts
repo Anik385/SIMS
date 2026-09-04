@@ -1,37 +1,34 @@
 export interface ProductRequest {
-    sku: String;
-    name: String;
-    description?: String;
-    category?: String;
-    price: number;
-    quantity: number;
-    recorderThreshold?: number;
-    locationId?: number;
+  sku: string;
+  name: string;
+  description?: string;
+  category?: string;          // ✅ correct spelling
+  price: number;
+  quantity: number;
+  reorderThreshold: number;   // ✅ correct spelling
+  locationId?: number;
 }
+
 export interface ProductResponse {
-    id: number;
-    sku: String;
-    name: String;
-    description: String;
-    caregory: String;
-    price: number;
-    quantity: number;
-    reorderThreshold: number;
-    locationId: number;
-    locationDescription: String;
+  id: number;
+  sku: string;
+  name: string;
+  description: string;
+  category: string;          // ✅ correct spelling
+  price: number;
+  quantity: number;
+  reorderThreshold: number;  // ✅ correct spelling
+  locationId: number;
+  locationDescription: string;
 }
 
-// For paginated response from Spring Boot
 export interface PageResponse<T> {
-    content: T[];
-    totalElements: number;
-    totalPages: number;
-    size: number;
-    number: number;
-    first: boolean;
-    Last: boolean;
-    empty: boolean;
-}
-
-export interface Product {
+  content: T[];
+  totalElements: number;
+  totalPages: number;
+  size: number;
+  number: number;
+  first: boolean;
+  last: boolean;
+  empty: boolean;
 }

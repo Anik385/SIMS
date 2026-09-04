@@ -2,9 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ProductService } from '../../core/services/product.service';
 import { StockService } from '../../core/services/stock.service';
-import { WebSocketService } from '../../core/services/websocket.service';
+import { WebSocketService } from '../../core/services/websocket.service';   // ✅ correct
 import { Subscription } from 'rxjs';
-import { ProductResponse } from 'src/app/shared/models/product.model';
+import { ProductResponse } from '../../shared/models/product.model';
 
 @Component({
   selector: 'app-stock',

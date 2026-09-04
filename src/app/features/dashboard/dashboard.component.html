@@ -1,1 +1,37 @@
-<p>dashboard works!</p>
+<app-navbar></app-navbar>
+<div class="container mt-4">
+  <h2>📊 Dashboard</h2>
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <div class="card text-white bg-primary">
+        <div class="card-body">
+          <h5 class="card-title">Total Products</h5>
+          <p class="card-text display-6">{{ totalProducts }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-white bg-warning">
+        <div class="card-body">
+          <h5 class="card-title">Low Stock Items</h5>
+          <p class="card-text display-6">{{ lowStockCount }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-white bg-success">
+        <div class="card-body">
+          <h5 class="card-title">Total Value</h5>
+          <p class="card-text display-6">${{ totalValue }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mt-4">
+    <h4>Quick Actions</h4>
+    <div class="d-flex gap-2">
+      <a class="btn btn-outline-primary" routerLink="/products">Manage Products</a>
+      <a class="btn btn-outline-success" routerLink="/stock">Adjust Stock</a>
+    </div>
+  </div>
+</div>
