@@ -50,7 +50,7 @@
         <button class="btn btn-success" (click)="adjustStock()" [disabled]="!delta">
           Apply Adjustment
         </button>
-        <div *ngIf="message" class="alert alert-info mt-2">{{ message }}</div>
+        <div *ngIf="message" class="my-custom-alert mt-2">{{ message }}</div>
         <div *ngIf="error" class="alert alert-danger mt-2">{{ error }}</div>
       </div>
     </div>
