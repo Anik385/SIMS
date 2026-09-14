@@ -16,6 +16,8 @@ import { ProductsComponent } from './features/products/products.component';
 import { StockComponent } from './features/stock/stock.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { ProductModalComponent } from './shared/components/product-modal/product-modal.component';
+import { UsersComponent } from './features/users/users.component';
+import { UserModalComponent } from './shared/components/user-modal/user-modal.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,11 @@ import { ProductModalComponent } from './shared/components/product-modal/product
     ProductsComponent,
     StockComponent,
     NavbarComponent,
-    ProductModalComponent
+    ProductModalComponent,
+    UsersComponent,
+    UserModalComponent,
+    UsersComponent,
+    UserModalComponent
   ],
   imports: [
     BrowserModule,

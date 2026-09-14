@@ -1,0 +1,41 @@
+<div class="modal show d-block" style="background: rgba(0,0,0,0.5);">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ isEditMode ? 'Edit User' : 'Add User' }}</h5>
+        <button type="button" class="btn-close" (click)="cancel()"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="mb-2">
+          <label>Email</label>
+          <input class="form-control" [(ngModel)]="email" [disabled]="isEditMode" placeholder="user@example.com" />
+        </div>
+
+        <div class="mb-2" *ngIf="!isEditMode">
+          <label>Password</label>
+          <input class="form-control" type="password" [(ngModel)]="password" placeholder="At least 6 characters" />
+        </div>
+
+        <div class="mb-2">
+          <label>Full Name</label>
+          <input class="form-control" [(ngModel)]="fullName" placeholder="John Doe" />
+        </div>
+
+        <div class="mb-2">
+          <label>Role</label>
+          <select class="form-select" [(ngModel)]="role">
+            <option *ngFor="let r of roles" [value]="r">{{ r }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="cancel()">Cancel</button>
+        <button class="btn btn-primary" (click)="submit()">
+          {{ isEditMode ? 'Update' : 'Create' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
