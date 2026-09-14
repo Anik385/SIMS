@@ -1,0 +1,33 @@
+<app-navbar></app-navbar>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>📍 Locations</h2>
+    <button class="btn btn-primary" (click)="openAdd()">+ Add Location</button>
+  </div>
+
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr><th>ID</th><th>Aisle</th><th>Shelf</th><th>Bin</th><th>Description</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let l of locations">
+        <td>{{ l.id }}</td>
+        <td>{{ l.aisle }}</td>
+        <td>{{ l.shelf }}</td>
+        <td>{{ l.bin }}</td>
+        <td>{{ l.description }}</td>
+        <td>
+          <button class="btn btn-sm btn-warning me-1" (click)="openEdit(l)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="delete(l)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-location-modal
+  *ngIf="showModal"
+  [location]="selected"
+  (save)="handleSave($event)"
+  (close)="close()">
+</app-location-modal>

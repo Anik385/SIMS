@@ -6,6 +6,8 @@ import { LoginComponent } from './features/login/login.component';
 import { ProductsComponent } from './features/products/products.component';
 import { StockComponent } from './features/stock/stock.component';
 import { UsersComponent } from './features/users/users.component';
+import { CategoriesComponent } from './features/categories/categories.component';
+import { LocationsComponent } from './features/locations/locations.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -15,6 +17,8 @@ const routes: Routes = [
   // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   // { path: '**', redirectTo: '/dashboard' }
   { path: 'users', component: UsersComponent, canActivate: [authGuard] },
+  { path: 'categories', component: CategoriesComponent, canActivate: [authGuard] },
+  { path: 'locations', component: LocationsComponent, canActivate: [authGuard] },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', redirectTo: '/dashboard' }
   // { path: '', redirectTo: '/login', pathMatch: 'full' },   // ← changed to login

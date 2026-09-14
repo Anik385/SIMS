@@ -18,6 +18,10 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { ProductModalComponent } from './shared/components/product-modal/product-modal.component';
 import { UsersComponent } from './features/users/users.component';
 import { UserModalComponent } from './shared/components/user-modal/user-modal.component';
+import { CategoriesComponent } from './features/categories/categories.component';
+import { LocationsComponent } from './features/locations/locations.component';
+import { CategoryModalComponent } from './shared/components/category-modal/category-modal.component';
+import { LocationModalComponent } from './shared/components/location-modal/location-modal.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,11 @@ import { UserModalComponent } from './shared/components/user-modal/user-modal.co
     UsersComponent,
     UserModalComponent,
     UsersComponent,
-    UserModalComponent
+    UserModalComponent,
+    CategoriesComponent,
+    LocationsComponent,
+    CategoryModalComponent,
+    LocationModalComponent
   ],
   imports: [
     BrowserModule,

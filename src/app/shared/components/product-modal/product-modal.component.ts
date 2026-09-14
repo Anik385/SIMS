@@ -1,27 +1,39 @@
-import { Component, EventEmitter, Input, Output, OnChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+
+import { CategoryResponse } from '../../models/category.model';
+import { LocationResponse } from '../../models/location.model';
 import { ProductRequest, ProductResponse } from '../../models/product.model';
+import { CategoryService } from 'src/app/core/services/category.service';
+import { LocationService } from 'src/app/core/services/location.service';
 
 @Component({
   selector: 'app-product-modal',
   templateUrl: './product-modal.component.html'
 })
-export class ProductModalComponent implements OnChanges {
+export class ProductModalComponent implements OnChanges, OnInit {
   @Input() product: ProductResponse | null = null;
   @Output() save = new EventEmitter<ProductRequest>();
   @Output() close = new EventEmitter<void>();
 
+  categories: CategoryResponse[] = [];
+  locations: LocationResponse[] = [];
+
   form: ProductRequest = {
-    sku: '',
-    name: '',
-    description: '',
-    category: '',
-    price: 0,
-    quantity: 0,
-    reorderThreshold: 5
+    sku: '', name: '', description: '', category: '',
+    price: 0, quantity: 0, reorderThreshold: 5,
+    categoryId: undefined, locationId: undefined
   };
 
-  get visible(): boolean {
-    return this.product !== null;
+  constructor(
+    private categoryService: CategoryService,
+    private locationService: LocationService
+  ) {}
+
+  get visible(): boolean { return this.product !== null; }
+
+  ngOnInit() {
+    this.categoryService.getAll().subscribe(data => this.categories = data);
+    this.locationService.getAll().subscribe(data => this.locations = data);
   }
 
   ngOnChanges() {
@@ -33,28 +45,21 @@ export class ProductModalComponent implements OnChanges {
         category: this.product.category || '',
         price: this.product.price,
         quantity: this.product.quantity,
-        reorderThreshold: this.product.reorderThreshold
+        reorderThreshold: this.product.reorderThreshold,
+        categoryId: this.product.categoryId,
+        locationId: this.product.locationId
       };
     } else {
       this.form = {
-        sku: '',
-        name: '',
-        description: '',
-        category: '',
-        price: 0,
-        quantity: 0,
-        reorderThreshold: 5
+        sku: '', name: '', description: '', category: '',
+        price: 0, quantity: 0, reorderThreshold: 5,
+        categoryId: undefined, locationId: undefined
       };
     }
   }
 
-  saveProduct() {
-    this.save.emit(this.form);
-  }
-
-  closeModal() {
-    this.close.emit();
-  }
+  saveProduct() { this.save.emit(this.form); }
+  closeModal() { this.close.emit(); }
 }
 
 // import { Component, EventEmitter, Input, Output } from '@angular/core';

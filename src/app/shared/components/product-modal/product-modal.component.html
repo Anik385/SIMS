@@ -14,9 +14,25 @@
           <label>Name</label>
           <input class="form-control" [(ngModel)]="form.name" placeholder="Product Name" />
         </div>
-        <div class="mb-2">
+        <!-- <div class="mb-2">
           <label>Category</label>
           <input class="form-control" [(ngModel)]="form.category" placeholder="Electronics" />
+        </div> -->
+        <div class="mb-2">
+          <label>Category</label>
+          <select class="form-select" [(ngModel)]="form.categoryId">
+            <option [ngValue]="undefined">-- Select --</option>
+            <option *ngFor="let c of categories" [ngValue]="c.id">{{ c.name }}</option>
+          </select>
+        </div>
+        <div class="mb-2">
+          <label>Location</label>
+          <select class="form-select" [(ngModel)]="form.locationId">
+            <option [ngValue]="undefined">-- Select --</option>
+            <option *ngFor="let l of locations" [ngValue]="l.id">
+              {{ l.aisle }}-{{ l.shelf }}-{{ l.bin }}
+            </option>
+          </select>
         </div>
         <div class="mb-2">
           <label>Price</label>

@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>📂 Categories</h2>
+    <button class="btn btn-primary" (click)="openAdd()">+ Add Category</button>
+  </div>
+
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr><th>ID</th><th>Name</th><th>Description</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of categories">
+        <td>{{ c.id }}</td>
+        <td>{{ c.name }}</td>
+        <td>{{ c.description }}</td>
+        <td>
+          <button class="btn btn-sm btn-warning me-1" (click)="openEdit(c)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="delete(c)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-category-modal
+  *ngIf="showModal"
+  [category]="selected"
+  (save)="handleSave($event)"
+  (close)="close()">
+</app-category-modal>
