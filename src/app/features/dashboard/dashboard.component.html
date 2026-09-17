@@ -1,4 +1,156 @@
 <app-navbar></app-navbar>
+<div class="container-fluid mt-4 px-4">
+  <h2 class="mb-4">📊 Dashboard</h2>
+
+  <!-- Stat Cards -->
+  <div class="row g-3" *ngIf="stats">
+    <div class="col-md-3">
+      <div class="card text-white bg-primary h-100">
+        <div class="card-body">
+          <h6>Total Products</h6>
+          <p class="display-6 mb-0">{{ stats.totalProducts }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-white bg-success h-100">
+        <div class="card-body">
+          <h6>Total Revenue</h6>
+          <p class="display-6 mb-0">${{ stats.totalRevenue | number:'1.2-2' }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-white bg-info h-100">
+        <div class="card-body">
+          <h6>This Month</h6>
+          <p class="display-6 mb-0">${{ stats.monthRevenue | number:'1.2-2' }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-white bg-danger h-100">
+        <div class="card-body">
+          <h6>Low Stock</h6>
+          <p class="display-6 mb-0">{{ stats.lowStockCount }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3 mt-1" *ngIf="stats">
+    <div class="col-md-3">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <h6>👥 Customers</h6>
+          <p class="h4">{{ stats.totalCustomers }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <h6>🚚 Suppliers</h6>
+          <p class="h4">{{ stats.totalSuppliers }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <h6>💰 Total Sales</h6>
+          <p class="h4">{{ stats.totalSales }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <h6>📄 Pending POs</h6>
+          <p class="h4">{{ stats.pendingPurchaseOrders }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="row g-3 mt-4">
+    <div class="col-md-8">
+      <div class="card h-100">
+        <div class="card-body">
+          <canvas baseChart
+                  [data]="lineChartData"
+                  [options]="lineChartOptions"
+                  [type]="lineChartType"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <canvas baseChart
+                  [data]="doughnutChartData"
+                  [options]="doughnutChartOptions"
+                  [type]="doughnutChartType"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3 mt-4">
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-body">
+          <canvas baseChart
+                  [data]="barChartData"
+                  [options]="barChartOptions"
+                  [type]="barChartType"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Low Stock Table -->
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-header bg-danger text-white">
+          ⚠️ Low Stock Alerts
+        </div>
+        <div class="card-body p-0">
+          <table class="table table-sm mb-0">
+            <thead>
+              <tr><th>SKU</th><th>Name</th><th>Qty</th><th>Threshold</th></tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of lowStock">
+                <td>{{ p.sku }}</td>
+                <td>{{ p.name }}</td>
+                <td class="text-danger fw-bold">{{ p.quantity }}</td>
+                <td>{{ p.reorderThreshold }}</td>
+              </tr>
+              <tr *ngIf="lowStock.length === 0">
+                <td colspan="4" class="text-center text-muted py-3">
+                  ✅ No low stock items
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="mt-4 mb-5">
+    <h5>Quick Actions</h5>
+    <a class="btn btn-outline-primary me-2" routerLink="/products">Manage Products</a>
+    <a class="btn btn-outline-success me-2" routerLink="/sales">New Sale</a>
+    <a class="btn btn-outline-warning me-2" routerLink="/purchase-orders">Purchase Orders</a>
+    <a class="btn btn-outline-info" routerLink="/reports">View Reports</a>
+  </div>
+</div>
+
+<!-- <app-navbar></app-navbar>
 <div class="container mt-4">
   <h2>📊 Dashboard</h2>
   <div class="row mt-4">
@@ -34,4 +186,4 @@
       <a class="btn btn-outline-success" routerLink="/stock">Adjust Stock</a>
     </div>
   </div>
-</div>
+</div> -->

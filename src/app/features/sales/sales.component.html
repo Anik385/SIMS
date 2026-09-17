@@ -1,0 +1,38 @@
+<app-navbar></app-navbar>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>💰 Sales</h2>
+    <button class="btn btn-primary" (click)="openAdd()">+ New Sale</button>
+  </div>
+
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Sale #</th><th>Customer</th><th>Sold By</th>
+        <th>Total</th><th>Payment</th><th>Status</th><th>Date</th><th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of sales">
+        <td>{{ s.saleNumber }}</td>
+        <td>{{ s.customerName || 'Walk-in' }}</td>
+        <td>{{ s.soldByName }}</td>
+        <td>${{ s.totalAmount }}</td>
+        <td>{{ s.paymentMethod }}</td>
+        <td><span class="badge" [ngClass]="getStatusClass(s.status)">{{ s.status }}</span></td>
+        <td>{{ s.createdAt | date:'short' }}</td>
+        <td>
+          <button class="btn btn-sm btn-info me-1"
+                  *ngIf="s.status === 'COMPLETED'"
+                  (click)="refund(s)">Refund</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-sale-modal
+  *ngIf="showModal"
+  (save)="handleCreate($event)"
+  (close)="close()">
+</app-sale-modal>

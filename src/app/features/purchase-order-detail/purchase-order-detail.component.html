@@ -1,0 +1,32 @@
+<app-navbar></app-navbar>
+<div class="container mt-4" *ngIf="order">
+  <button class="btn btn-outline-secondary mb-3" (click)="goBack()">← Back</button>
+  <div class="card">
+    <div class="card-header">
+      <h3>{{ order.orderNumber }}</h3>
+    </div>
+    <div class="card-body">
+      <p><strong>Supplier:</strong> {{ order.supplierName }}</p>
+      <p><strong>Status:</strong> {{ order.status }}</p>
+      <p><strong>Total:</strong> ${{ order.totalAmount }}</p>
+      <p><strong>Expected Delivery:</strong> {{ order.expectedDelivery | date:'medium' }}</p>
+      <p><strong>Notes:</strong> {{ order.notes }}</p>
+
+      <h5>Items</h5>
+      <table class="table">
+        <thead>
+          <tr><th>Product</th><th>SKU</th><th>Qty</th><th>Unit Price</th><th>Subtotal</th></tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of order.items">
+            <td>{{ i.productName }}</td>
+            <td>{{ i.productSku }}</td>
+            <td>{{ i.quantity }}</td>
+            <td>${{ i.unitPrice }}</td>
+            <td>${{ i.subtotal }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
