@@ -1,13 +1,24 @@
 <app-navbar></app-navbar>
 <div class="container mt-4">
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2>👥 Customers</h2>
+  <div class="d-flex justify-content-between align-items-start mb-4">
+    <div class="page-header mb-0">
+      <h2>👥 Customers</h2>
+      <p>Manage customer profiles and loyalty points</p>
+    </div>
     <button class="btn btn-primary" (click)="openAdd()">+ Add Customer</button>
   </div>
 
   <table class="table table-striped table-hover">
     <thead>
-      <tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Loyalty</th><th>Status</th><th>Actions</th></tr>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Loyalty</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
     </thead>
     <tbody>
       <tr *ngFor="let c of customers">
@@ -30,9 +41,5 @@
   </table>
 </div>
 
-<app-customer-modal
-  *ngIf="showModal"
-  [customer]="selected"
-  (save)="handleSave($event)"
-  (close)="close()">
+<app-customer-modal *ngIf="showModal" [customer]="selected" (save)="handleSave($event)" (close)="close()">
 </app-customer-modal>

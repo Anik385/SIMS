@@ -2,11 +2,12 @@ export interface ProductRequest {
   sku: string;
   name: string;
   description?: string;
-  category?: string;          // ✅ correct spelling
+  category?: string;
   price: number;
   quantity: number;
-  reorderThreshold: number;   // ✅ correct spelling
+  reorderThreshold: number;
   locationId?: number;
+  categoryId?: number; 
 }
 
 export interface ProductResponse {
@@ -14,12 +15,13 @@ export interface ProductResponse {
   sku: string;
   name: string;
   description: string;
-  category: string;          // ✅ correct spelling
+  category: string;
   price: number;
   quantity: number;
-  reorderThreshold: number;  // ✅ correct spelling
+  reorderThreshold: number;
   locationId: number;
   locationDescription: string;
+  categoryId?: number;
 }
 
 export interface PageResponse<T> {
